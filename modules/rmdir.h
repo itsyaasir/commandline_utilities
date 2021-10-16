@@ -1,0 +1,1 @@
+int remove_directory(char *path);
