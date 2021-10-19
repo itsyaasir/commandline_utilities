@@ -1,4 +1,4 @@
-// RM modules
+// Source file for the rm module
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -20,6 +20,7 @@ int delete_file(char *pathname)
     }
     else
     {
-        return syscall(SYS_unlink, pathname);
+        return syscall(SYS_unlink, pathname); 
+        // unlink is a system call for deleting a file
     }
 }

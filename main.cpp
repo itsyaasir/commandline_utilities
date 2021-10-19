@@ -13,56 +13,86 @@
 #include "modules/touch.h"
 #include "modules/rm.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) // argv[0] = name of program
 {
-
-    // CREATE DIRECTORY
-    if (argc == 3 && strcmp(argv[1], "mkdir") == 0)
+    if (argc < 2)
     {
-        if (create_directory(argv[2]) == -1)
+        printf("Usage: %s <command> [<args>]\n", argv[0]);
+        return 1;
+    }
+    if (strcmp(argv[1], "mkdir") == 0)
+    {
+        if (argc < 3)
+        {
+            printf("Usage: %s mkdir <dirname>\n", argv[0]);
+            return 1;
+        }
+        else if (create_directory(argv[2]) == -1)
         {
             printf("Error: %s\n", strerror(errno));
-            return -1;
+            return 1;
         }
+        create_directory(argv[2]);
         printf("Directory created\n");
-        return 0;
     }
-    // Remove Directory
-    else if (argc == 3 && strcmp(argv[1], "rmdir") == 0)
+    else if (strcmp(argv[1], "rmdir") == 0)
     {
-        if (remove_directory(argv[2]) == -1)
+        if (argc < 3)
+        {
+            printf("Usage: %s rmdir <dirname>\n", argv[0]);
+            return 1;
+        }
+        else if (remove_directory(argv[2]) == -1)
         {
             printf("Error: %s\n", strerror(errno));
-            return -1;
+            return 1;
         }
+        remove_directory(argv[2]);
         printf("Directory removed\n");
-        return 0;
     }
-    // CREATE FILE
-    else if (argc == 3 && strcmp(argv[1], "touch") == 0)
+    else if (strcmp(argv[1], "touch") == 0)
     {
-        if (create_file(argv[2]) == -1)
+        if (argc < 3)
+        {
+            printf("Usage: %s touch <filename>\n", argv[0]);
+            return 1;
+        }
+        else if (create_file(argv[2]) == -1)
         {
             printf("Error: %s\n", strerror(errno));
-            return -1;
+            return 1;
         }
+        create_file(argv[2]);
         printf("File created\n");
-        return 0;
     }
-    // Delete file
-    else if (argc == 3 && strcmp(argv[1], "rm") == 0)
+    else if (strcmp(argv[1], "rm") == 0)
     {
-        if (delete_file(argv[2]) == -1)
+        if (argc < 3)
         {
-            printf("Error: %s\n", strerror(errno));
-            return -1;
+            printf("Usage: %s rm <filename>\n", argv[0]); // Print usage of the program
+            return 1;
         }
+        else if (delete_file(argv[2]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno)); // error message
+        }
+        delete_file(argv[2]);
         printf("File removed\n");
-        return 0;
+    }
+    else if (strcmp(argv[1], "help") == 0) // HELP
+    {
+        printf("Usage: %s <command> [<args>]\n", argv[0]);
+        printf("Commands:\n");
+        printf("\tmkdir <dirname>\n");
+        printf("\trmdir <dirname>\n");
+        printf("\ttouch <filename>\n");
+        printf("\trm <filename>\n");
+        printf("\thelp\n");
     }
     else
     {
-        printf("Error: Invalid arguments\n");
-        return -1;
+        printf("Unknown command: %s\n", argv[1]); // Unknown command
+        return 1;
     }
+    return 0;
 }
