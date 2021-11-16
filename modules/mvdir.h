@@ -1,0 +1,1 @@
+int move_dir(char *from, char *to);

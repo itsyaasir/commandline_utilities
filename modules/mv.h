@@ -1,0 +1,1 @@
+int rename_file(char *old_name, char *new_name);
