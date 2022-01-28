@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <syscall.h>
+#include <stdlib.h>
+
 #include "rmdir.h"
 // SYSCALL REMOVE DIRECTORY
 int remove_directory(char *path)

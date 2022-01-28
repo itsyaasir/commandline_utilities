@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <syscall.h>
+#include <stdlib.h>
+
 #include "mvdir.h"
 // Move direc
 
