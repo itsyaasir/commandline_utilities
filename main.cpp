@@ -5,7 +5,6 @@
 #include "modules/rmdir.h"
 #include "modules/touch.h"
 #include "modules/rm.h"
-#include "modules/ls.h"
 #include "modules/mv.h"
 #include "modules/mvdir.h"
 
@@ -79,21 +78,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
         delete_file(argv[2]);
         printf("File removed\n");
     }
-    // List dirs
-    else if (strcmp(argv[1], "ls") == 0)
-    {
-        if (argc < 3)
-        {
-            printf("Usage: %s ls <dirname>\n", argv[0]);
-            return 1;
-        }
-        else if (list_dir(argv[2]) == -1)
-        {
-            printf("Error: %s\n", strerror(errno));
-            return 1;
-        }
-        list_dir(argv[2]);
-    }
+
     // Rename file
     else if (strcmp(argv[1], "mv") == 0)
     {
