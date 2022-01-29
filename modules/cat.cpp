@@ -5,10 +5,10 @@
 #include <syscall.h>
 #include <stdlib.h>
 #include "cat.h"
-
 // Read contents of a file
 int read_file(char *path)
 {
+    #define BUFFER_SIZE 1024;
     if (path == NULL)
     {
         return -1;

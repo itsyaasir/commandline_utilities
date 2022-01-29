@@ -8,6 +8,7 @@
 // Read the bottom 10 contents of a file
 int tail_file(char *path)
 {
+#define BUFFER_SIZE 1024;
     if (path == NULL)
     {
         return -1;

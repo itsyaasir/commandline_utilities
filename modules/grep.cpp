@@ -8,6 +8,7 @@
 // Filter contents of a file based on a pattern string
 int grep_file(char *path, char *pattern)
 {
+#define BUFFER_SIZE 1024;
     if (path == NULL || pattern == NULL)
     {
         return -1;

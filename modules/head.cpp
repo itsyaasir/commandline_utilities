@@ -8,6 +8,7 @@
 // Read only 10 top contents of a file
 int head_file(char *path)
 {
+#define BUFFER_SIZE 1024;
     if (path == NULL)
     {
         return -1;
