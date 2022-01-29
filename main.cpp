@@ -12,6 +12,7 @@
 #include "modules/head.h"
 #include "modules/pwd.h"
 #include "modules/tail.h"
+#include "modules/write.h"
 
 int main(int argc, char *argv[]) // argv[0] = name of program
 {
@@ -197,16 +198,36 @@ int main(int argc, char *argv[]) // argv[0] = name of program
         }
         get_pwd();
     }
-
+    // Write to a file
+    else if (strcmp(argv[1], "write") == 0)
+    {
+        if (argc < 4)
+        {
+            printf("Usage: %s write <filename> <text>\n", argv[0]);
+            return 1;
+        }
+        else if (write_file(argv[2], argv[3]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        write_file(argv[2], argv[3]);
+    }
     // Help Command
     else if (strcmp(argv[1], "help") == 0) // HELP
     {
         printf("Usage: %s <command> [<args>]\n", argv[0]);
         printf("Commands:\n");
-        printf("\tmkdir <dirname>\n");
-        printf("\trmdir <dirname>\n");
-        printf("\ttouch <filename>\n");
-        printf("\trm <filename>\n");
+        printf("\tmkdir <dirname> - Create A New Directory\n");
+        printf("\trmdir <dirname> - Remove Directory\n");
+        printf("\ttouch <filename> - Create a new file\n");
+        printf("\trm <filename> - Delete a file\n");
+        printf("\tcat <filename> - Display the contents of a file\n");
+        printf("\tgrep <filename> <pattern> -Search for patterns in the file\n");
+        printf("\ttail <filename> - Read 10 bottom contents of a file\n");
+        printf("\thead <filename> - Read 10 top contents of a file\n");
+        printf("\tpwd - Get current directory\n");
+        printf("\twrite <filename> <text> - Write to a file\n");
         printf("\thelp\n");
     }
 
