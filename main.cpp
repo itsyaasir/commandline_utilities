@@ -7,6 +7,11 @@
 #include "modules/rm.h"
 #include "modules/mv.h"
 #include "modules/mvdir.h"
+#include "modules/grep.h"
+#include "modules/cat.h"
+#include "modules/head.h"
+#include "modules/pwd.h"
+#include "modules/tail.h"
 
 int main(int argc, char *argv[]) // argv[0] = name of program
 {
@@ -112,6 +117,85 @@ int main(int argc, char *argv[]) // argv[0] = name of program
         move_dir(argv[2], argv[3]);
 
         printf("Directory renamed\n");
+    }
+    // Grep command
+    else if (strcmp(argv[1], "grep") == 0)
+    {
+        if (argc < 4)
+        {
+            printf("Usage: %s grep <filename> <pattern>\n", argv[0]);
+            return 1;
+        }
+        else if (grep_file(argv[2], argv[3]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        grep_file(argv[2], argv[3]);
+    }
+
+    // Cat command
+    else if (strcmp(argv[1], "cat") == 0)
+    {
+        if (argc < 3)
+        {
+            printf("Usage: %s cat <filename>\n", argv[0]);
+            return 1;
+        }
+        else if (read_file(argv[2]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        read_file(argv[2]);
+    }
+
+    // Tail command
+    else if (strcmp(argv[1], "tail") == 0)
+    {
+        if (argc < 3)
+        {
+            printf("Usage: %s tail <filename>\n", argv[0]);
+            return 1;
+        }
+        else if (tail_file(argv[2]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        tail_file(argv[2]);
+    }
+
+    // Head
+    else if (strcmp(argv[1], "head") == 0)
+    {
+        if (argc < 3)
+        {
+            printf("Usage: %s head <filename>\n", argv[0]);
+            return 1;
+        }
+        else if (head_file(argv[2]) == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        head_file(argv[2]);
+    }
+
+    // Get current directory given the path
+    else if (strcmp(argv[1], "pwd") == 0)
+    {
+        if (argc < 2)
+        {
+            printf("Usage: %s pwd\n", argv[0]);
+            return 1;
+        }
+        else if (get_pwd() == -1)
+        {
+            printf("Error: %s\n", strerror(errno));
+            return 1;
+        }
+        get_pwd();
     }
 
     // Help Command

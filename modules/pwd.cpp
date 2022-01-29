@@ -5,13 +5,16 @@
 #include <stdlib.h>
 #include "pwd.h"
 
-// Get current working directory
-int get_cwd(char *path)
+// Get current working directory no arguments
+int pwd_no_args()
 {
-    if (path == NULL)
+    char *cwd = getcwd(NULL, 0);
+    if (cwd == NULL)
     {
         return -1;
     }
-
-    return syscall(__NR_getcwd, path, PATH_MAX);
+    write(STDOUT_FILENO, cwd, strlen(cwd));
+    write(STDOUT_FILENO, "\n", 1);
+    free(cwd);
+    return 0;
 }

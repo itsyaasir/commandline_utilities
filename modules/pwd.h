@@ -1,3 +1,4 @@
 // Header file for pwd.cpp
 
-int get_cwd(char *path);
+// Get current working directory no arguments
+int get_pwd()
