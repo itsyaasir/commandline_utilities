@@ -3,10 +3,11 @@
 #include <fcntl.h>
 #include <syscall.h>
 #include <stdlib.h>
+#include <string.h>
 #include "pwd.h"
 
 // Get current working directory no arguments
-int pwd_no_args()
+int get_pwd()
 {
     char *cwd = getcwd(NULL, 0);
     if (cwd == NULL)

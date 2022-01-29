@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#include "modules/write.h"
+#include "write.h"
 
 // Write into a file from the argument
 int write_file(char *filename, char *text)

@@ -8,7 +8,7 @@
 // Read contents of a file
 int read_file(char *path)
 {
-    #define BUFFER_SIZE 1024;
+    int BUFFER_SIZE = 1024;
     if (path == NULL)
     {
         return -1;
