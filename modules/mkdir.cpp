@@ -23,7 +23,7 @@ int create_directory(char *path)
 int main()
 {
     create_directory("test");
-    // check if the directory was created by running ls -l
+    // check if the directory was created
     if (access("test", F_OK) == 0)
     {
         write(STDOUT_FILENO, "Directory created\n", 1);
