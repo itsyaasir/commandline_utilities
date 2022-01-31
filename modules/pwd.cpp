@@ -20,7 +20,7 @@ int get_pwd()
 }
 
 // Test function for pwd module
-int main()
+int test_pwd()
 {
     get_pwd();
     return 0;

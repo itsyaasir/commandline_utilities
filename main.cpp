@@ -125,14 +125,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
             printf("Usage: %s grep <filename> <pattern>\n", argv[0]);
             return 1;
         }
-        else if (grep_file(argv[2], argv[3]) == -1)
-        {
-            printf("Pattern not found\n");
-            printf("Error: %s\n", strerror(errno));
 
-            return 1;
-        }
-        printf("Pattern Found\n");
         grep_file(argv[2], argv[3]);
     }
 
@@ -144,11 +137,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
             printf("Usage: %s cat <filename>\n", argv[0]);
             return 1;
         }
-        else if (read_file(argv[2]) == -1)
-        {
-            printf("Error: %s\n", strerror(errno));
-            return 1;
-        }
+
         read_file(argv[2]);
     }
 
@@ -160,11 +149,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
             printf("Usage: %s pwd\n", argv[0]);
             return 1;
         }
-        else if (get_pwd() == -1)
-        {
-            printf("Error: %s\n", strerror(errno));
-            return 1;
-        }
+
         get_pwd();
     }
     // Write to a file

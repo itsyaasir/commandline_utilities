@@ -31,7 +31,7 @@ int read_file(char *path)
 }
 
 // test function for cat module
-int main()
+int test_cat()
 {
     // First create a file and write some text to it
     int fd = open("test.txt", O_CREAT | O_WRONLY, 0644);

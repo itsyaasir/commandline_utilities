@@ -20,7 +20,7 @@ int create_directory(char *path)
 }
 
 // Test for this module
-int main()
+int test_create_directory()
 {
     create_directory("test");
     // check if the directory was created

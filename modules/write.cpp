@@ -27,7 +27,7 @@ int write_file(char *filename, char *text)
 }
 
 // Test function for write module
-int main()
+int test_write_file()
 {
     // First create a file and write some text to it
     int fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
