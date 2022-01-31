@@ -1,7 +1,7 @@
 // Source file for the rm module
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
+#include <sys/syscall.h>
 #include <stdlib.h>
 
 #include "rm.h"

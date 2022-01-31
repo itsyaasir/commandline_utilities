@@ -1,7 +1,6 @@
 // PWD module
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
 #include <stdlib.h>
 #include <string.h>
 #include "pwd.h"
@@ -17,5 +16,12 @@ int get_pwd()
     write(STDOUT_FILENO, cwd, strlen(cwd));
     write(STDOUT_FILENO, "\n", 1);
     free(cwd);
+    return 0;
+}
+
+// Test function for pwd module
+int main()
+{
+    get_pwd();
     return 0;
 }

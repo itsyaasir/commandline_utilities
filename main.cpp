@@ -9,9 +9,7 @@
 #include "modules/mvdir.h"
 #include "modules/grep.h"
 #include "modules/cat.h"
-#include "modules/head.h"
 #include "modules/pwd.h"
-#include "modules/tail.h"
 #include "modules/write.h"
 
 int main(int argc, char *argv[]) // argv[0] = name of program
@@ -102,7 +100,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
 
         printf("File renamed\n");
     }
-    // Move directory
+    // Rename directory
     else if (strcmp(argv[1], "mvdir") == 0)
     {
         if (argc < 4)
@@ -129,9 +127,12 @@ int main(int argc, char *argv[]) // argv[0] = name of program
         }
         else if (grep_file(argv[2], argv[3]) == -1)
         {
+            printf("Pattern not found\n");
             printf("Error: %s\n", strerror(errno));
+
             return 1;
         }
+        printf("Pattern Found\n");
         grep_file(argv[2], argv[3]);
     }
 
@@ -149,38 +150,6 @@ int main(int argc, char *argv[]) // argv[0] = name of program
             return 1;
         }
         read_file(argv[2]);
-    }
-
-    // Tail command
-    else if (strcmp(argv[1], "tail") == 0)
-    {
-        if (argc < 3)
-        {
-            printf("Usage: %s tail <filename>\n", argv[0]);
-            return 1;
-        }
-        else if (tail_file(argv[2]) == -1)
-        {
-            printf("Error: %s\n", strerror(errno));
-            return 1;
-        }
-        tail_file(argv[2]);
-    }
-
-    // Head
-    else if (strcmp(argv[1], "head") == 0)
-    {
-        if (argc < 3)
-        {
-            printf("Usage: %s head <filename>\n", argv[0]);
-            return 1;
-        }
-        else if (head_file(argv[2]) == -1)
-        {
-            printf("Error: %s\n", strerror(errno));
-            return 1;
-        }
-        head_file(argv[2]);
     }
 
     // Get current directory given the path
@@ -212,6 +181,7 @@ int main(int argc, char *argv[]) // argv[0] = name of program
             return 1;
         }
         write_file(argv[2], argv[3]);
+        printf("File written\n");
     }
     // Help Command
     else if (strcmp(argv[1], "help") == 0) // HELP
@@ -224,8 +194,6 @@ int main(int argc, char *argv[]) // argv[0] = name of program
         printf("\trm <filename> - Delete a file\n");
         printf("\tcat <filename> - Display the contents of a file\n");
         printf("\tgrep <filename> <pattern> -Search for patterns in the file\n");
-        printf("\ttail <filename> - Read 10 bottom contents of a file\n");
-        printf("\thead <filename> - Read 10 top contents of a file\n");
         printf("\tpwd - Get current directory\n");
         printf("\twrite <filename> <text> - Write to a file\n");
         printf("\thelp\n");

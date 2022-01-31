@@ -2,7 +2,6 @@
 
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
 #include <stdlib.h>
 #include "cat.h"
 // Read contents of a file
@@ -28,5 +27,20 @@ int read_file(char *path)
     }
 
     close(fd);
+    return 0;
+}
+
+// test function for cat module
+int main()
+{
+    // First create a file and write some text to it
+    int fd = open("test.txt", O_CREAT | O_WRONLY, 0644);
+    if (fd == -1)
+    {
+        return -1;
+    }
+    write(fd, "This is a test file\n", 1); // This is a test file
+    char *path = "test.txt";
+    read_file(path);
     return 0;
 }

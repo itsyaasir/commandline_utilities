@@ -1,7 +1,7 @@
 // TOUCH MODULE
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
+#include <sys/syscall.h>
 #include <stdlib.h>
 #include "touch.h"
 
@@ -21,6 +21,6 @@ int create_file(char *pathname)
         // O_CREAT is used to create a file if it does not exist
         // O_WRONLY is used to write to the file
         // O_TRUNC is used to truncate the file if it already exists
-        // 0666 is the permissions of the file -rw-rw-rw- 	0666 	read & write
+        // 0666 is the permisOrsions of the file -rw-rw-rw- 	0666 	read & write
     }
 }

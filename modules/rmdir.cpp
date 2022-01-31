@@ -1,7 +1,7 @@
 //Source code for rmdir module
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
+#include <sys/syscall.h>
 #include <stdlib.h>
 
 #include "rmdir.h"
@@ -12,5 +12,5 @@ int remove_directory(char *path)
     {
         return -1;
     }
-    return syscall(__NR_rmdir, path); // syscall(__NR_rmdir, path); is for removing directory
+    return syscall(SYS_rmdir, path); // syscall(__NR_rmdir, path); is for removing directory
 }

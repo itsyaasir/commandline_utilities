@@ -1,7 +1,7 @@
 // Move Directory
 #include <unistd.h>
 #include <fcntl.h>
-#include <syscall.h>
+#include <sys/syscall.h>
 #include <stdlib.h>
 
 #include "mvdir.h"
